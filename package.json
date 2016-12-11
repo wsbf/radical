@@ -1,0 +1,19 @@
+{
+  "name": "radical",
+  "version": "1.0.0",
+  "description": "Radio automation, but better",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "https://github.com/wsbf/radical",
+  "author": "Ben Shealy",
+  "license": "ISC",
+  "homepage": "https://github.com/wsbf/radical",
+  "dependencies": {
+    "angular": "^1.6.0",
+    "angular-ui-bootstrap": "^2.3.1",
+    "electron": "^1.4.12"
+  }
+}
