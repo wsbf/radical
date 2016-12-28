@@ -1,0 +1,20 @@
+/* rules for button icons */
+.button-icon {
+	color: #808080;
+}
+
+.button-icon:hover,
+.button-icon:focus {
+	text-decoration: none;
+	cursor: pointer;
+	color: #303030;
+}
+
+/* rules for alerts */
+#alerts {
+	z-index: 2000;
+	position: fixed;
+	bottom: 0px;
+	left: 20px;
+	width: 300px;
+}

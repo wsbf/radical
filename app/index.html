@@ -1,13 +1,37 @@
 <!DOCTYPE html>
-<html ng-app="app" ng-strict-di>
+<html lang="en" ng-app="wizbif" ng-strict-di>
 <head>
-    <meta charset="UTF-8">
-    <title>Radical</title>
+	<title>Radical</title>
+	<meta charset="UTF-8">
 
-    <script src="app.js"></script>
+	<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="../node_modules/angular/angular.min.js"></script>
+	<script src="../node_modules/angular-resource/angular-resource.min.js"></script>
+	<script src="../node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+	<script src="../node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script src="js/services/alert.js"></script>
+	<script src="js/services/database.js"></script>
+	<script src="js/controllers/dashboard.js"></script>
+	<script src="js/controllers/library.js"></script>
+	<script src="js/controllers/logbook.js"></script>
+	<script src="js/controllers/login.js"></script>
+	<script src="js/app.js"></script>
 </head>
-
 <body>
-    <h1>Welcome to the New Better Radio Suite!</h1>
+	<nav class="navbar navbar-default navbar-static-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" ui-sref="dashboard.logbook">
+					<img src="images/wsbflady_100.png" height="30" width="30" alt="WSBF logo"/>
+				</a>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid">
+        <ui-view></ui-view>
+	</div>
 </body>
 </html>
