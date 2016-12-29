@@ -27,3 +27,8 @@ After that you can download updates anytime:
 cd radical
 git pull
 ```
+To run the project: 
+`` 
+npm install
+npm start 
+``` 
