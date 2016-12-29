@@ -28,7 +28,7 @@ cd radical
 git pull
 ```
 To run the project: 
-`` 
+``` 
 npm install
 npm start 
 ``` 
