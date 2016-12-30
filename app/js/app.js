@@ -4,6 +4,7 @@ var app = angular.module("wizbif", [
 	"ui.bootstrap",
 	"ui.router",
 	"wizbif.main",
+	"wizbif.carts",
 	"wizbif.library",
 	"wizbif.logbook",
 	"wizbif.login"
@@ -19,6 +20,14 @@ app.config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $ur
 			url: "/login",
 			templateUrl: "views/login.html",
 			controller: "LoginCtrl"
+		})
+		.state("carts", {
+			url: "/carts",
+			params: {
+				cart_typeID: "0"
+			},
+			templateUrl: "views/carts.html",
+			controller: "CartsCtrl"
 		})
 		.state("library", {
 			url: "/library",

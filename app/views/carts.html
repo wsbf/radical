@@ -1,0 +1,31 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Carts</h3>
+	</div>
+
+	<div class="panel-body">
+		<ul class="nav nav-pills nav-justified">
+			<li ng-repeat="t in cart_types" ng-class="{ 'active': cart_typeID === t.cart_typeID }">
+				<a ui-sref="carts({ cart_typeID: t.cart_typeID })">{{t.type}}</a>
+			</li>
+		</ul>
+	</div>
+
+	<table class="table">
+		<thead>
+			<th>Cart ID</th>
+			<th>Title</th>
+			<th>Issuer</th>
+			<th>Start Date</th>
+		</thead>
+
+		<tbody>
+			<tr ng-repeat="c in carts | orderBy:'start_date':true">
+				<td>{{c.cartID}}</td>
+				<td>{{c.title}}</td>
+				<td>{{c.issuer}}</td>
+				<td>{{c.start_date}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
