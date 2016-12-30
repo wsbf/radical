@@ -1,3 +1,5 @@
+"use strict";
+
 var alertModule = angular.module("wizbif.alert", []);
 
 alertModule.service("alert", ["$interval", function($interval) {

@@ -1,3 +1,5 @@
+"use strict";
+
 var logbookModule = angular.module("wizbif.logbook", [
 	"wizbif.alert",
 	"wizbif.database"

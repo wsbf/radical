@@ -1,3 +1,5 @@
+"use strict";
+
 var libraryModule = angular.module("wizbif.library", [
 	"ui.router",
 	"wizbif.alert",
@@ -14,7 +16,7 @@ libraryModule.controller("LibraryCtrl", ["$scope", "$state", "alert", "db", func
 	$scope.albums = [];
 
 	$scope.select = function(rotationID, general_genreID, query, page) {
-		$state.go("^.library", {
+		$state.go("library", {
 			rotationID: rotationID,
 			general_genreID: general_genreID,
 			query: query,
