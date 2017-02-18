@@ -7,6 +7,7 @@ var queueModule = angular.module("wizbif.queue", [
 
 queueModule.controller("QueueCtrl", ["$scope", "$interval", "alert", "db", function($scope, $interval, alert, db) {
 	$scope.days = db.getDefs("days");
+	$scope.show_times = db.getDefs("show_times");
 	$scope.showID = null;
 	$scope.show = {};
 	$scope.listenerCount = 0;
