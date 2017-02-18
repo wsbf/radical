@@ -6,8 +6,8 @@ var app = angular.module("wizbif", [
 	"wizbif.main",
 	"wizbif.carts",
 	"wizbif.library",
-	"wizbif.logbook",
-	"wizbif.login"
+	"wizbif.login",
+	"wizbif.queue"
 ]);
 
 app.config(["$compileProvider", function($compileProvider) {
@@ -48,10 +48,10 @@ app.config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $ur
 			templateUrl: "views/library_album.html",
 			controller: "LibraryAlbumCtrl"
 		})
-		.state("logbook", {
-			url: "/logbook",
-			templateUrl: "views/logbook.html",
-			controller: "LogbookCtrl"
+		.state("queue", {
+			url: "/queue",
+			templateUrl: "views/queue.html",
+			controller: "QueueCtrl"
 		});
 
 	$urlRouterProvider.otherwise("/login");

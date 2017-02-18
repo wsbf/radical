@@ -1,11 +1,11 @@
 "use strict";
 
-var logbookModule = angular.module("wizbif.logbook", [
+var queueModule = angular.module("wizbif.queue", [
 	"wizbif.alert",
 	"wizbif.database"
 ]);
 
-logbookModule.controller("LogbookCtrl", ["$scope", "$interval", "alert", "db", function($scope, $interval, alert, db) {
+queueModule.controller("QueueCtrl", ["$scope", "$interval", "alert", "db", function($scope, $interval, alert, db) {
 	$scope.days = db.getDefs("days");
 	$scope.showID = null;
 	$scope.show = {};

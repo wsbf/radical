@@ -11,7 +11,7 @@ loginModule.controller("LoginCtrl", ["$scope", "$http", "$state", "db", function
 			.then(function() {
 				return db.User.get().then(function(user) {
 					$scope.$parent.user = user;
-					$state.go("logbook");
+					$state.go("queue");
 				});
 			}, function(res) {
 				$scope.error = res.data;
