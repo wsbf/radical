@@ -1,4 +1,10 @@
-<div class="panel panel-default">
+<div class="text-center" ng-show="!user">
+	<h3><strong>Nah.</strong></h3>
+
+	<p>You must be logged in to view the library.</p>
+</div>
+
+<div class="panel panel-default" ng-show="user">
 	<div class="panel-heading">
 		<h3 class="panel-title">Carts</h3>
 	</div>

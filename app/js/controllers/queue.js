@@ -20,11 +20,16 @@ queueModule.controller("QueueCtrl", ["$scope", "$interval", "alert", "db", funct
 
 	var getCurrentShow = function() {
 		db.Logbook.getCurrentShow().then(function(show) {
-			$scope.scheduleID = (_.find($scope.user.shows, {
-				scheduleID: show.scheduleID
-			}) || {}).scheduleID;
-			$scope.showID = $scope.scheduleID && show.showID;
 			$scope.show = show;
+
+			if ( $scope.user ) {
+				var scheduleShow = _.find($scope.user.shows || [], {
+					scheduleID: show.scheduleID
+				});
+
+				$scope.scheduleID = (scheduleShow || {}).scheduleID;
+				$scope.showID = $scope.scheduleID && show.showID;
+			}
 		}, function() {
 			$scope.show = null;
 		});

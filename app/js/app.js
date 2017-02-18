@@ -16,11 +16,6 @@ app.config(["$compileProvider", function($compileProvider) {
 
 app.config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $urlRouterProvider) {
 	$stateProvider
-		.state("login", {
-			url: "/login",
-			templateUrl: "views/login.html",
-			controller: "LoginCtrl"
-		})
 		.state("carts", {
 			url: "/carts",
 			params: {
@@ -32,7 +27,7 @@ app.config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $ur
 		.state("library", {
 			url: "/library",
 			params: {
-				rotationID: "1",
+				rotationID: "3",
 				general_genreID: null,
 				query: null,
 				page: 0
@@ -54,5 +49,5 @@ app.config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $ur
 			controller: "QueueCtrl"
 		});
 
-	$urlRouterProvider.otherwise("/login");
+	$urlRouterProvider.otherwise("/queue");
 }]);

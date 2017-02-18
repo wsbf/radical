@@ -28,7 +28,7 @@ libraryModule.controller("LibraryCtrl", ["$scope", "$state", "alert", "db", func
 	db.Library.getLibrary($scope.rotationID, $scope.general_genreID, $scope.query, $scope.page)
 		.then(function(albums) {
 			$scope.albums = albums;
-		});
+		}, angular.noop);
 }]);
 
 libraryModule.controller("LibraryAlbumCtrl", ["$scope", "$stateParams", "db", "alert", function($scope, $stateParams, db, alert) {
@@ -43,7 +43,7 @@ libraryModule.controller("LibraryAlbumCtrl", ["$scope", "$stateParams", "db", "a
 				$scope.album = album;
 
 				return db.Library.getRelatedArtists(album.artist_name);
-			})
+			}, angular.noop)
 			.then(function(related_artists) {
 				$scope.related_artists = related_artists;
 			});
