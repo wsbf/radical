@@ -4,13 +4,19 @@ This repository contains the code for the upcoming radio automation system which
 
 ## Features
 
-- __Digital Library interface__: search music by artist/album/track/etc, search carts (PSAs, Underwritings, etc)
-- __Play queue__: a unified queue to add tracks and carts manually or automatically
-- __Preload playlists__: allow users to create playlists through their user accout and use them during their show
-- __Track automation__: generate playlists when no one is in the studio, or when you're just feeling lazy
-- __Cart automation__: allow carts to be inserted automatically at the right times if you don't want to mess with it
-- __Track transitions__: set the queue to run automatically, but still stop every 4 songs so that you can do mic segments, software crossfade (maybe?)
-- __Remote control__: allow the application to be controlled through SSH (restarting automation, remote broadcasting)
+### Done
+
+- __Music Library interface__: browse and search for albums and carts
+- __Play queue__: a unified queue for tracks, carts, and automation
+- __Playlists__: create playlists and add them to the play queue
+
+### To do
+
+- __Track automation__: set the queue to insert tracks automatically
+- __Cart automation__: set the queue to insert carts automatically at appropriate times
+- __Queue automation__: set the queue to run automatically (with periodic stops for mic segments)
+- __Track transitions__: enable software crossfade
+- __Remote control__: control the application through SSH (restarting automation, remote broadcasting)
 - __Spotify API__: display album artwork, related artists, etc.
 
 ## Contributing
