@@ -7,7 +7,7 @@ var app = angular.module("wizbif", [
 	"wizbif.carts",
 	"wizbif.library",
 	"wizbif.login",
-	"wizbif.queue"
+	"wizbif.playqueue"
 ]);
 
 app.config(["$compileProvider", function($compileProvider) {
@@ -43,11 +43,11 @@ app.config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $ur
 			templateUrl: "views/library_album.html",
 			controller: "LibraryAlbumCtrl"
 		})
-		.state("queue", {
-			url: "/queue",
-			templateUrl: "views/queue.html",
-			controller: "QueueCtrl"
+		.state("playqueue", {
+			url: "/playqueue",
+			templateUrl: "views/playqueue.html",
+			controller: "PlayQueueCtrl"
 		});
 
-	$urlRouterProvider.otherwise("/queue");
+	$urlRouterProvider.otherwise("/playqueue");
 }]);

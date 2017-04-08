@@ -17,14 +17,14 @@
 	<script src="js/controllers/carts.js"></script>
 	<script src="js/controllers/library.js"></script>
 	<script src="js/controllers/login.js"></script>
-	<script src="js/controllers/queue.js"></script>
+	<script src="js/controllers/playqueue.js"></script>
 	<script src="js/app.js"></script>
 </head>
 <body ng-controller="MainCtrl">
 	<nav class="navbar navbar-default navbar-static-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" ui-sref="queue">
+				<a class="navbar-brand" ui-sref="playqueue">
 					<img src="images/wsbflady_100.png" height="30" width="30" alt="WSBF logo"/>
 				</a>
 			</div>
@@ -37,7 +37,7 @@
 					<a ui-sref="carts">Carts</a>
 				</li>
 				<li>
-					<a ui-sref="queue">Queue</a>
+					<a ui-sref="playqueue">Play Queue</a>
 				</li>
 				<li ng-show="!user">
 					<a href="" ng-click="login()">Log in</a>

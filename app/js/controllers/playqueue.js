@@ -1,11 +1,11 @@
 "use strict";
 
-var queueModule = angular.module("wizbif.queue", [
+var playqueueModule = angular.module("wizbif.playqueue", [
 	"wizbif.alert",
 	"wizbif.database"
 ]);
 
-queueModule.controller("QueueCtrl", ["$scope", "$interval", "alert", "db", function($scope, $interval, alert, db) {
+playqueueModule.controller("PlayQueueCtrl", ["$scope", "$interval", "alert", "db", function($scope, $interval, alert, db) {
 	$scope.days = db.getDefs("days");
 	$scope.show_times = db.getDefs("show_times");
 	$scope.showID = null;
