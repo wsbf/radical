@@ -1,12 +1,12 @@
 <div class="text-center" ng-show="!user">
 	<h3><strong>Nah.</strong></h3>
 
-	<p>You must be logged in to view the playlist queue.</p>
+	<p>You must be logged in to view the play queue.</p>
 </div>
 
 <div class="panel panel-default" ng-show="user">
 	<div class="panel-heading">
-		<h3 class="panel-title">Playlist Queue</h3>
+		<h3 class="panel-title">Play Queue</h3>
 	</div>
 
 	<div class="panel-body">
@@ -27,7 +27,7 @@
 		</div>
 	</div>
 
-	<div class="panel-body">
+	<div class="panel-body" ng-show="showID">
 		<dl class="dl-horizontal">
 			<dt>Show</dt>
 			<dd>{{show.show_name || '--'}}</dd>
@@ -48,7 +48,7 @@
 		</dl>
 	</div>
 
-	<table class="table table-condensed">
+	<table class="table table-condensed" ng-show="showID">
 		<thead>
 			<th style="width: 3em"></th>
 			<th style="width: 8em">Album Code</th>

@@ -5,7 +5,7 @@ This repository contains the code for the upcoming radio automation system which
 ## Features
 
 - __Digital Library interface__: search music by artist/album/track/etc, search carts (PSAs, Underwritings, etc)
-- __Playlist queue__: a unified queue to add tracks and carts manually or automatically
+- __Play queue__: a unified queue to add tracks and carts manually or automatically
 - __Preload playlists__: allow users to create playlists through their user accout and use them during their show
 - __Track automation__: generate playlists when no one is in the studio, or when you're just feeling lazy
 - __Cart automation__: allow carts to be inserted automatically at the right times if you don't want to mess with it
@@ -28,8 +28,8 @@ cd radical
 git pull
 ```
 
-To run the project: 
+To run the project:
 ```
 npm install
-npm start 
+npm start
 ```
