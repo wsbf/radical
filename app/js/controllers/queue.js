@@ -11,12 +11,8 @@ queueModule.controller("QueueCtrl", ["$scope", "$interval", "alert", "db", funct
 	$scope.showID = null;
 	$scope.show = {};
 	$scope.listenerCount = 0;
-
-	var getListenerCount = function() {
-		db.Logbook.getListenerCount().then(function(count) {
-			$scope.listenerCount = count;
-		});
-	};
+	$scope.playlists = [];
+	$scope.newTrack = { disc_num: 1 };
 
 	var getCurrentShow = function() {
 		db.Logbook.getCurrentShow().then(function(show) {
@@ -35,6 +31,19 @@ queueModule.controller("QueueCtrl", ["$scope", "$interval", "alert", "db", funct
 		});
 	};
 
+	var getListenerCount = function() {
+		db.Logbook.getListenerCount().then(function(count) {
+			$scope.listenerCount = count;
+		});
+	};
+
+	var getPlaylists = function() {
+		db.Playlist.getPlaylists()
+			.then(function(playlists) {
+				$scope.playlists = playlists;
+			});
+	};
+
 	$scope.signOn = function(scheduleID) {
 		db.Logbook.signOn(scheduleID).then(function() {
 			getCurrentShow();
@@ -51,6 +60,17 @@ queueModule.controller("QueueCtrl", ["$scope", "$interval", "alert", "db", funct
 		}, function(res) {
 			alert.error(res.data || res.statusText);
 		});
+	};
+
+	$scope.addPlaylist = function(showPlaylist, playlistID) {
+		db.Playlist.get(playlistID)
+			.$promise
+			.then(function(playlist) {
+				playlist.tracks.forEach(function(track) {
+					track.rotation = track.rotation || "O";
+					showPlaylist.unshift(track);
+				});
+			});
 	};
 
 	$scope.getAlbum = function(album_code) {
@@ -74,7 +94,7 @@ queueModule.controller("QueueCtrl", ["$scope", "$interval", "alert", "db", funct
 		track.rotation = track.rotation || "O";
 		playlist.unshift(track);
 
-		$scope.newTrack = {};
+		$scope.newTrack = { disc_num: 1 };
 	};
 
 	$scope.logTrack = function(track) {
@@ -87,8 +107,9 @@ queueModule.controller("QueueCtrl", ["$scope", "$interval", "alert", "db", funct
 	};
 
 	// initialize
-	getListenerCount();
 	getCurrentShow();
+	getListenerCount();
+	getPlaylists();
 
 	$interval(getListenerCount, 5000);
 }]);

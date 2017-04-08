@@ -13,8 +13,9 @@ databaseModule.service("db", ["$http", "$q", "$resource", function($http, $q, $r
 	});
 
 	api.LogbookShow = $resource("https://wsbf.net/api/logbook/show.php");
-
 	api.LogbookTrack = $resource("https://wsbf.net/api/logbook/track.php");
+
+	api.Playlist = $resource("https://wsbf.net/api/playlist/playlist.php");
 
 	api.Spotify = {};
 
@@ -212,6 +213,30 @@ databaseModule.service("db", ["$http", "$q", "$resource", function($http, $q, $r
 	 */
 	this.Logbook.logTrack = function(track) {
 		return api.LogbookTrack.save({}, track).$promise;
+	};
+
+	this.Playlist = {};
+
+	/**
+	 * Get the list of the current user's playlists.
+	 *
+	 * @return Promise of playlists array
+	 */
+	this.Playlist.getPlaylists = function() {
+		return $http.get("https://wsbf.net/api/playlist/playlists.php")
+			.then(function(res) {
+				return res.data;
+			});
+	};
+
+	/**
+	 * Get a playlist.
+	 *
+	 * @param playlistID
+	 * @return Promise of playlist object
+	 */
+	this.Playlist.get = function(playlistID) {
+		return api.Playlist.get({ playlistID: playlistID });
 	};
 
 	this.User = {};

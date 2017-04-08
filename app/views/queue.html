@@ -4,7 +4,13 @@
 	<p>You must be logged in to view the play queue.</p>
 </div>
 
-<div class="panel panel-default" ng-show="user">
+<div class="text-center" ng-show="user && !show">
+	<h3><strong>Nah.</strong></h3>
+
+	<p>It would seem that you aren't in Studio A, so you can't use the play queue.</p>
+</div>
+
+<div class="panel panel-default" ng-show="user && show">
 	<div class="panel-heading">
 		<h3 class="panel-title">Play Queue</h3>
 	</div>
@@ -48,6 +54,20 @@
 		</dl>
 	</div>
 
+	<div class="panel-body" ng-show="showID">
+		<div class="row">
+			<div class="col-sm-offset-2 col-sm-5">
+				<select class="form-control" ng-model="playlistID">
+					<option ng-repeat="p in playlists" value="{{p.playlistID}}">{{p.name}}</option>
+				</select>
+			</div>
+
+			<div class="col-sm-3">
+				<button class="btn btn-default" ng-click="addPlaylist(show.playlist, playlistID)">Add Playlist</button>
+			</div>
+		</div>
+	</div>
+
 	<table class="table table-condensed" ng-show="showID">
 		<thead>
 			<th style="width: 3em"></th>
@@ -63,7 +83,7 @@
 		</thead>
 
 		<tbody>
-			<tr>
+			<tr ng-class="{ 'has-success': newTrack.airabilityID == 1, 'has-error': newTrack.airabilityID == 2 }">
 				<td></td>
 				<td>
 					<input class="form-control input-sm" ng-model="newTrack.album_code" ng-blur="newTrack.album_code && getAlbum(newTrack.album_code)"/>
@@ -75,17 +95,17 @@
 					<input class="form-control input-sm" type="number" ng-model="newTrack.track_num" ng-blur="newTrack.album_code && getTrack(newTrack.album_code, newTrack.disc_num, newTrack.track_num)"/>
 				</td>
 				<td>{{newTrack.rotation}}</td>
-				<td ng-class="{ 'has-success': newTrack.airabilityID == 1, 'has-error': newTrack.airabilityID == 2 }">
-					<input class="form-control input-sm" ng-model="newTrack.track_name"/>
+				<td>
+					<input class="form-control input-sm" ng-model="newTrack.track_name" ng-keypress="$event.key == 'Enter' && addTrack(show.playlist, newTrack)"/>
 				</td>
 				<td>
-					<input class="form-control input-sm" ng-model="newTrack.artist_name"/>
+					<input class="form-control input-sm" ng-model="newTrack.artist_name" ng-keypress="$event.key == 'Enter' && addTrack(show.playlist, newTrack)"/>
 				</td>
 				<td>
-					<input class="form-control input-sm" ng-model="newTrack.album_name"/>
+					<input class="form-control input-sm" ng-model="newTrack.album_name" ng-keypress="$event.key == 'Enter' && addTrack(show.playlist, newTrack)"/>
 				</td>
 				<td>
-					<input class="form-control input-sm" ng-model="newTrack.label"/>
+					<input class="form-control input-sm" ng-model="newTrack.label" ng-keypress="$event.key == 'Enter' && addTrack(show.playlist, newTrack)"/>
 				</td>
 				<td class="text-center h3">
 					<span class="button-icon" ng-hide="newTrack.airabilityID == 2" ng-click="addTrack(show.playlist, newTrack)">&plus;</span>
