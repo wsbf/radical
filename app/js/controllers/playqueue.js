@@ -45,7 +45,7 @@ playqueueModule.controller("PlayQueueCtrl", ["$scope", "$interval", "alert", "db
 		db.Playlist.getPlaylists()
 			.then(function(playlists) {
 				$scope.playlists = playlists;
-			});
+			}, angular.noop);
 	};
 
 	$scope.signOn = function(scheduleID) {
@@ -74,6 +74,8 @@ playqueueModule.controller("PlayQueueCtrl", ["$scope", "$interval", "alert", "db
 					track.rotation = track.rotation || "O";
 					queue.insert(track);
 				});
+
+				$scope.playlistID = null;
 			});
 	};
 
@@ -95,6 +97,11 @@ playqueueModule.controller("PlayQueueCtrl", ["$scope", "$interval", "alert", "db
 	};
 
 	$scope.addTrack = function(track) {
+		if ( track.airabilityID === "2" ) {
+			alert.error("Cannot add a No Air track.");
+			return;
+		}
+
 		track.rotation = track.rotation || "O";
 		queue.insert(track);
 
