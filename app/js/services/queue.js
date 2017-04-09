@@ -19,10 +19,6 @@ queueModule.service("queue", [function() {
 	 * @param show
 	 */
 	this.setShow = function(show) {
-		if ( !show ) {
-			return;
-		}
-
 		self.items = (self.show.showID === show.showID)
 			? self.items
 			: show.playlist;

@@ -122,5 +122,9 @@ playqueueModule.controller("PlayQueueCtrl", ["$scope", "$interval", "alert", "db
 	getListenerCount();
 	getPlaylists();
 
-	$interval(getListenerCount, 5000);
+	var listenerCount = $interval(getListenerCount, 5000);
+
+	$scope.$on("$destroy", function() {
+		$interval.cancel(listenerCount);
+	});
 }]);
