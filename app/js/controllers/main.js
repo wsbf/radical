@@ -32,4 +32,6 @@ mainModule.controller("MainCtrl", ["$scope", "$http", "$state", "$uibModal", "al
 				alert.success("Successfully logged out.");
 			});
 	};
+
+	$scope.login();
 }]);
