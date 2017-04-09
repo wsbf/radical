@@ -23,6 +23,7 @@
 			<th>Title</th>
 			<th>Issuer</th>
 			<th>Start Date</th>
+			<th></th>
 		</thead>
 
 		<tbody>
@@ -31,6 +32,9 @@
 				<td>{{c.title}}</td>
 				<td>{{c.issuer}}</td>
 				<td>{{c.start_date}}</td>
+				<td class="text-center">
+					<span class="button-icon" ng-click="enqueueCart(c)">&plus;</span>
+				</td>
 			</tr>
 		</tbody>
 	</table>
