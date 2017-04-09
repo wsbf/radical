@@ -1,11 +1,11 @@
 "use strict";
 
-var cartModule = angular.module("wizbif.carts", [
+var cartModule = angular.module("app.carts", [
 	"ui.router",
 	"ui.bootstrap",
-	"wizbif.alert",
-	"wizbif.database",
-	"wizbif.queue"
+	"app.alert",
+	"app.database",
+	"app.queue"
 ]);
 
 cartModule.controller("CartsCtrl", ["$scope", "$stateParams", "alert", "db", "queue", function($scope, $stateParams, alert, db, queue) {

@@ -1,8 +1,8 @@
 "use strict";
 
-var loginModule = angular.module("wizbif.login", [
+var loginModule = angular.module("app.login", [
 	"ui.router",
-	"wizbif.database"
+	"app.database"
 ]);
 
 loginModule.controller("LoginCtrl", ["$scope", "$http", "db", function($scope, $http, db) {

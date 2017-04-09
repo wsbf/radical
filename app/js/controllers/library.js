@@ -1,10 +1,10 @@
 "use strict";
 
-var libraryModule = angular.module("wizbif.library", [
+var libraryModule = angular.module("app.library", [
 	"ui.router",
-	"wizbif.alert",
-	"wizbif.database",
-	"wizbif.queue"
+	"app.alert",
+	"app.database",
+	"app.queue"
 ]);
 
 libraryModule.controller("LibraryCtrl", ["$scope", "$state", "alert", "db", function($scope, $state, alert, db) {

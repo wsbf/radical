@@ -6,7 +6,7 @@
  */
 "use strict";
 
-var alertModule = angular.module("wizbif.alert", []);
+var alertModule = angular.module("app.alert", []);
 
 alertModule.service("alert", ["$interval", function($interval) {
 	this.alerts = [];

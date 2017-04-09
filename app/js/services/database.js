@@ -5,7 +5,7 @@
  */
 "use strict";
 
-var databaseModule = angular.module("wizbif.database", [
+var databaseModule = angular.module("app.database", [
 	"ngResource"
 ]);
 

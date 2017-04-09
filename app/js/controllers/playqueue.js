@@ -1,10 +1,10 @@
 "use strict";
 var debug = require("./js/debug");
 
-var playqueueModule = angular.module("wizbif.playqueue", [
-	"wizbif.alert",
-	"wizbif.database",
-	"wizbif.queue"
+var playqueueModule = angular.module("app.playqueue", [
+	"app.alert",
+	"app.database",
+	"app.queue"
 ]);
 
 playqueueModule.controller("PlayQueueCtrl", ["$scope", "$interval", "alert", "db", "queue", function($scope, $interval, alert, db, queue) {

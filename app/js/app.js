@@ -1,13 +1,13 @@
 "use strict";
 
-var app = angular.module("wizbif", [
+var app = angular.module("app", [
 	"ui.bootstrap",
 	"ui.router",
-	"wizbif.main",
-	"wizbif.carts",
-	"wizbif.library",
-	"wizbif.login",
-	"wizbif.playqueue"
+	"app.main",
+	"app.carts",
+	"app.library",
+	"app.login",
+	"app.playqueue"
 ]);
 
 app.config(["$compileProvider", function($compileProvider) {

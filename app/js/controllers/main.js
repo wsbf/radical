@@ -2,10 +2,10 @@
 var _ = require("lodash");
 var debug = require("./js/debug");
 
-var mainModule = angular.module("wizbif.main", [
+var mainModule = angular.module("app.main", [
 	"ui.bootstrap",
 	"ui.router",
-	"wizbif.alert"
+	"app.alert"
 ]);
 
 mainModule.controller("MainCtrl", ["$scope", "$http", "$state", "$uibModal", "alert", function($scope, $http, $state, $uibModal, alert) {

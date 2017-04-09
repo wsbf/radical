@@ -5,7 +5,7 @@
  */
 "use strict";
 
-var queueModule = angular.module("wizbif.queue", []);
+var queueModule = angular.module("app.queue", []);
 
 queueModule.service("queue", [function() {
 	this.show = {};
