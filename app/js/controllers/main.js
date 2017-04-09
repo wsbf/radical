@@ -1,5 +1,6 @@
 "use strict";
 var _ = require("lodash");
+var debug = require("./js/debug");
 
 var mainModule = angular.module("wizbif.main", [
 	"ui.bootstrap",
@@ -33,5 +34,10 @@ mainModule.controller("MainCtrl", ["$scope", "$http", "$state", "$uibModal", "al
 			});
 	};
 
-	$scope.login();
+	if ( debug.ENABLED ) {
+		$scope.user = debug.USER;
+	}
+	else {
+		$scope.login();
+	}
 }]);

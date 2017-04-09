@@ -1,4 +1,5 @@
 "use strict";
+var debug = require("./js/debug");
 
 var playqueueModule = angular.module("wizbif.playqueue", [
 	"wizbif.alert",
@@ -29,6 +30,10 @@ playqueueModule.controller("PlayQueueCtrl", ["$scope", "$interval", "alert", "db
 				$scope.showID = $scope.scheduleID && show.showID;
 
 				queue.setShow(show);
+
+				if ( debug.ENABLED ) {
+					$scope.showID = show.showID;
+				}
 			}
 		}, function() {
 			$scope.show = null;
