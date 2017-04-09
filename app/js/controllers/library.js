@@ -15,7 +15,7 @@ libraryModule.controller("LibraryCtrl", ["$scope", "$state", "alert", "db", func
 	$scope.page = $state.params.page;
 	$scope.albums = [];
 
-	$scope.select = function(rotationID, general_genreID, query, page) {
+	$scope.go = function(rotationID, general_genreID, query, page) {
 		$state.go("library", {
 			rotationID: rotationID,
 			general_genreID: general_genreID,

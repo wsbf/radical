@@ -20,14 +20,14 @@
 
 		<div class="row">
 			<div class="col-sm-3">
-				<select class="form-control" ng-model="general_genreID" ng-options="g.general_genreID as g.genre for g in general_genres" ng-change="select(rotationID, general_genreID, null, 0)">
+				<select class="form-control" ng-model="general_genreID" ng-options="g.general_genreID as g.genre for g in general_genres" ng-change="go(rotationID, general_genreID, null, 0)">
 					<option value="">All Genres</option>
 				</select>
 			</div>
 
 			<div class="col-sm-3">
-				<button class="btn btn-sm" ng-click="page > 0 && select(rotationID, general_genreID, query, page - 1)" ng-disabled="page == 0">newer</button>
-				<button class="btn btn-sm" ng-click="select(rotationID, general_genreID, query, page + 1)">older</button>
+				<button class="btn btn-sm" ng-click="page > 0 && go(rotationID, general_genreID, query, page - 1)" ng-disabled="page == 0">newer</button>
+				<button class="btn btn-sm" ng-click="go(rotationID, general_genreID, query, page + 1)">older</button>
 			</div>
 
 			<div class="col-sm-4">
@@ -35,7 +35,7 @@
 			</div>
 
 			<div class="col-sm-2">
-				<button class="btn btn-sm btn-default" ng-click="select(rotationID, null, query, 0)" ng-disabled="!query || query.length < 3">search</button>
+				<button class="btn btn-sm btn-default" ng-click="go(rotationID, null, query, 0)" ng-disabled="!query || query.length < 3">search</button>
 			</div>
 		</div>
 	</div>
