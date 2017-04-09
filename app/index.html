@@ -55,10 +55,14 @@
 	</div>
 
 	<div id="alerts">
-		<uib-alert ng-repeat="a in alert.alerts" type="{{a.type}}" close="alert.remove($index)">
+		<div class="alert alert-{{a.type}} alert-dismissible" role="alert" ng-repeat="a in alert.alerts">
+			<button type="button" class="close" ng-click="alert.remove($index)">
+				<span aria-hidden="true">&times;</span>
+				<span class="sr-only">Close</span>
+			</button>
 			<strong>{{a.header}}</strong>
 			<span>{{a.message}}<span>
-		</uib-alert>
+		</div>
 	</div>
 </body>
 </html>
