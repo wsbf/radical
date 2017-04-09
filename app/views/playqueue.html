@@ -63,7 +63,7 @@
 			</div>
 
 			<div class="col-sm-3">
-				<button class="btn btn-default" ng-click="addPlaylist(show.playlist, playlistID)">Add Playlist</button>
+				<button class="btn btn-default" ng-click="addPlaylist(playlistID)" ng-disabled="!playlistID">Add Playlist</button>
 			</div>
 		</div>
 	</div>
@@ -96,23 +96,23 @@
 				</td>
 				<td>{{newTrack.rotation}}</td>
 				<td>
-					<input class="form-control input-sm" ng-model="newTrack.track_name" ng-keypress="$event.key == 'Enter' && addTrack(show.playlist, newTrack)"/>
+					<input class="form-control input-sm" ng-model="newTrack.track_name" ng-keypress="$event.key == 'Enter' && addTrack(newTrack)"/>
 				</td>
 				<td>
-					<input class="form-control input-sm" ng-model="newTrack.artist_name" ng-keypress="$event.key == 'Enter' && addTrack(show.playlist, newTrack)"/>
+					<input class="form-control input-sm" ng-model="newTrack.artist_name" ng-keypress="$event.key == 'Enter' && addTrack(newTrack)"/>
 				</td>
 				<td>
-					<input class="form-control input-sm" ng-model="newTrack.album_name" ng-keypress="$event.key == 'Enter' && addTrack(show.playlist, newTrack)"/>
+					<input class="form-control input-sm" ng-model="newTrack.album_name" ng-keypress="$event.key == 'Enter' && addTrack(newTrack)"/>
 				</td>
 				<td>
-					<input class="form-control input-sm" ng-model="newTrack.label" ng-keypress="$event.key == 'Enter' && addTrack(show.playlist, newTrack)"/>
+					<input class="form-control input-sm" ng-model="newTrack.label" ng-keypress="$event.key == 'Enter' && addTrack(newTrack)"/>
 				</td>
 				<td class="text-center h3">
-					<span class="button-icon" ng-hide="newTrack.airabilityID == 2" ng-click="addTrack(show.playlist, newTrack)">&plus;</span>
+					<span class="button-icon" ng-hide="newTrack.airabilityID == 2" ng-click="addTrack(newTrack)">&plus;</span>
 				</td>
 			</tr>
 
-			<tr ng-repeat="t in show.playlist">
+			<tr ng-repeat="t in queue.items">
 				<td class="text-center">
 					<a href="" ng-show="showID && !t.logged" ng-click="logTrack(t)">Log</a>
 				</td>
@@ -125,7 +125,7 @@
 				<td>{{t.album_name}}</td>
 				<td>{{t.label}}</td>
 				<td class="text-center lead">
-					<span class="button-icon" ng-hide="t.logged" ng-click="show.playlist.splice($index, 1)">&times;</span>
+					<span class="button-icon" ng-hide="t.logged" ng-click="queue.remove($index)">&times;</span>
 				</td>
 			</tr>
 		</tbody>

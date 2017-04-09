@@ -2,16 +2,18 @@
 
 var playqueueModule = angular.module("wizbif.playqueue", [
 	"wizbif.alert",
-	"wizbif.database"
+	"wizbif.database",
+	"wizbif.queue"
 ]);
 
-playqueueModule.controller("PlayQueueCtrl", ["$scope", "$interval", "alert", "db", function($scope, $interval, alert, db) {
+playqueueModule.controller("PlayQueueCtrl", ["$scope", "$interval", "alert", "db", "queue", function($scope, $interval, alert, db, queue) {
 	$scope.days = db.getDefs("days");
 	$scope.show_times = db.getDefs("show_times");
 	$scope.showID = null;
 	$scope.show = {};
 	$scope.listenerCount = 0;
 	$scope.playlists = [];
+	$scope.queue = queue;
 	$scope.newTrack = { disc_num: 1 };
 
 	var getCurrentShow = function() {
@@ -25,6 +27,8 @@ playqueueModule.controller("PlayQueueCtrl", ["$scope", "$interval", "alert", "db
 
 				$scope.scheduleID = (scheduleShow || {}).scheduleID;
 				$scope.showID = $scope.scheduleID && show.showID;
+
+				queue.setShow(show);
 			}
 		}, function() {
 			$scope.show = null;
@@ -62,13 +66,13 @@ playqueueModule.controller("PlayQueueCtrl", ["$scope", "$interval", "alert", "db
 		});
 	};
 
-	$scope.addPlaylist = function(showPlaylist, playlistID) {
+	$scope.addPlaylist = function(playlistID) {
 		db.Playlist.get(playlistID)
 			.$promise
 			.then(function(playlist) {
 				playlist.tracks.forEach(function(track) {
 					track.rotation = track.rotation || "O";
-					showPlaylist.unshift(track);
+					queue.insert(track);
 				});
 			});
 	};
@@ -90,9 +94,9 @@ playqueueModule.controller("PlayQueueCtrl", ["$scope", "$interval", "alert", "db
 		});
 	};
 
-	$scope.addTrack = function(playlist, track) {
+	$scope.addTrack = function(track) {
 		track.rotation = track.rotation || "O";
-		playlist.unshift(track);
+		queue.insert(track);
 
 		$scope.newTrack = { disc_num: 1 };
 	};

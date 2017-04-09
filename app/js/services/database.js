@@ -1,3 +1,8 @@
+/**
+ * @file app/js/services/database.js
+
+ * The Database service provides an interface to server-side data.
+ */
 "use strict";
 
 var databaseModule = angular.module("wizbif.database", [

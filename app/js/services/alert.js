@@ -1,3 +1,9 @@
+/**
+ * @file app/js/services/alert.js
+
+ * The Alert service provides an interface to a
+ * collection of arbitrary messages.
+ */
 "use strict";
 
 var alertModule = angular.module("wizbif.alert", []);
