@@ -3,12 +3,13 @@
 var libraryModule = angular.module("wizbif.library", [
 	"ui.router",
 	"wizbif.alert",
-	"wizbif.database"
+	"wizbif.database",
+	"wizbif.queue"
 ]);
 
 libraryModule.controller("LibraryCtrl", ["$scope", "$state", "alert", "db", function($scope, $state, alert, db) {
-	$scope.rotations = db.getDefs("rotations");
 	$scope.general_genres = db.getDefs("general_genres");
+	$scope.rotations = db.getDefs("rotations");
 	$scope.rotationID = $state.params.rotationID;
 	$scope.general_genreID = $state.params.general_genreID;
 	$scope.query = $state.params.query;
@@ -31,9 +32,10 @@ libraryModule.controller("LibraryCtrl", ["$scope", "$state", "alert", "db", func
 		}, angular.noop);
 }]);
 
-libraryModule.controller("LibraryAlbumCtrl", ["$scope", "$stateParams", "db", "alert", function($scope, $stateParams, db, alert) {
-	$scope.general_genres = db.getDefs("general_genres");
+libraryModule.controller("LibraryAlbumCtrl", ["$scope", "$stateParams", "alert", "db", "queue", function($scope, $stateParams, alert, db, queue) {
 	$scope.airability = db.getDefs("airability");
+	$scope.general_genres = db.getDefs("general_genres");
+	$scope.rotations = db.getDefs("rotations");
 	$scope.album = {};
 	$scope.related_artists = [];
 
@@ -47,6 +49,24 @@ libraryModule.controller("LibraryAlbumCtrl", ["$scope", "$stateParams", "db", "a
 			.then(function(related_artists) {
 				$scope.related_artists = related_artists;
 			});
+	};
+
+	$scope.enqueueTrack = function(track, album) {
+		if ( track.airabilityID === "2" ) {
+			alert.error("Cannot add a No Air track.");
+			return;
+		}
+
+		var item = angular.extend({
+			albumID: album.albumID,
+			album_code: album.album_code,
+			rotation: $scope.rotations[album.rotationID].bin_abbr,
+			album_name: album.album_name,
+			label: album.label
+		}, track);
+
+		queue.insert(item);
+		alert.success("Added track to play queue.");
 	};
 
 	// initialize
