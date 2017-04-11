@@ -53,6 +53,21 @@ playqueueModule.controller("PlayQueueCtrl", ["$scope", "$interval", "alert", "db
 			}, angular.noop);
 	};
 
+	$scope.Auto = {};
+	$scope.Auto.state = "stopped";
+
+	$scope.Auto.start = function() {
+		$scope.Auto.state = "playing";
+	};
+
+	$scope.Auto.stop = function() {
+		$scope.Auto.state = "stopping";
+	};
+
+	$scope.Auto.stopNow = function() {
+		$scope.Auto.state = "stopped";
+	};
+
 	$scope.signOn = function(scheduleID) {
 		db.Logbook.signOn(scheduleID).then(function() {
 			getCurrentShow();

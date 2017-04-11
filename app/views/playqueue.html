@@ -17,8 +17,18 @@
 
 	<div class="panel-body">
 		<div class="row">
-			<div class="col-sm-offset-2 col-sm-5">
-				<select class="form-control" ng-model="scheduleID" ng-disabled="showID">
+			<div class="col-sm-12 text-right">
+				<button class="btn btn-default" ng-click="Auto.start()" ng-show="Auto.state == 'stopped'">Start Automation</button>
+				<button class="btn btn-default" ng-click="Auto.stop()" ng-show="Auto.state == 'playing'">Stop Automation</button>
+				<button class="btn btn-default" ng-click="Auto.stopNow()" ng-show="Auto.state == 'stopping'">Stop Automation (now)</button>
+			</div>
+		</div>
+
+		<br>
+
+		<div class="row" ng-show="!showID">
+			<div class="col-sm-8">
+				<select class="form-control" ng-model="scheduleID">
 					<option ng-repeat="s in user.shows" value="{{s.scheduleID}}">
 						<span>{{s.show_name}}</span>
 						<span>({{days[s.dayID].day}} {{show_times[s.show_timeID].show_time}})</span>
@@ -26,43 +36,44 @@
 				</select>
 			</div>
 
-			<div class="col-sm-3">
-				<button class="btn btn-default" ng-click="signOn(scheduleID)" ng-disabled="!scheduleID || showID">Sign on</button>
+			<div class="col-sm-4 text-right">
+				<button class="btn btn-default" ng-click="signOn(scheduleID)" ng-disabled="!scheduleID">Sign on</button>
+			</div>
+		</div>
+
+		<div class="row" ng-show="showID">
+			<div class="col-sm-8">
+				<span class="h3">
+					<strong>{{show.show_name || show.hosts[0].preferred_name}}</strong>
+				</span>
+				<ul class="list-inline">
+					<li ng-repeat="h in show.hosts">{{h.preferred_name}}</li>
+				</ul>
+			</div>
+
+			<div class="col-sm-4 text-right">
 				<button class="btn btn-default" ng-click="signOff()" ng-disabled="!showID">Sign off</button>
 			</div>
 		</div>
-	</div>
 
-	<div class="panel-body" ng-show="showID">
-		<dl class="dl-horizontal">
-			<dt>Show</dt>
-			<dd>{{show.show_name || '--'}}</dd>
+		<div class="row" ng-show="showID">
+			<div class="col-sm-12">
+				<ul class="list-inline">
+					<li><strong>Start:</strong> {{show.start_time | date:'short'}}</li>
+					<li><strong>Type:</strong> {{show.type}}</li>
+					<li><strong>Listeners:</strong> {{listenerCount}}</li>
+				</ul>
+			</div>
+		</div>
 
-			<dt>Hosts</dt>
-			<dd>
-				<div ng-repeat="h in show.hosts">{{h.preferred_name}}</div>
-			</dd>
-
-			<dt>Start Time</dt>
-			<dd>{{(show.start_time | date:'medium') || '--'}}</dd>
-
-			<dt>Show Type</dt>
-			<dd>{{show.type || '--'}}</dd>
-
-			<dt>Listeners</dt>
-			<dd>{{listenerCount}}</dd>
-		</dl>
-	</div>
-
-	<div class="panel-body" ng-show="showID">
-		<div class="row">
-			<div class="col-sm-offset-2 col-sm-5">
+		<div class="row" ng-show="showID">
+			<div class="col-sm-4">
 				<select class="form-control" ng-model="playlistID">
 					<option ng-repeat="p in playlists" value="{{p.playlistID}}">{{p.name}}</option>
 				</select>
 			</div>
 
-			<div class="col-sm-3">
+			<div class="col-sm-4">
 				<button class="btn btn-default" ng-click="addPlaylist(playlistID)" ng-disabled="!playlistID">Add Playlist</button>
 			</div>
 		</div>
