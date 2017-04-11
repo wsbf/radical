@@ -7,11 +7,61 @@
 
 var queueModule = angular.module("app.queue", []);
 
-queueModule.service("queue", [function() {
-	this.show = {};
+queueModule.constant("cartConfig", [
+	{
+		cart_typeID: "0",
+		minute: 0,
+		max_delta: 300
+	},
+	{
+		cart_typeID: "1",
+		minute: 15,
+		max_delta: 300
+	},
+	{
+		cart_typeID: "0",
+		minute: 30,
+		max_delta: 300
+	},
+	{
+		cart_typeID: "2",
+		minute: 30,
+		max_delta: 300
+	},
+	{
+		cart_typeID: "1",
+		minute: 45,
+		max_delta: 300
+	}
+]);
+
+queueModule.service("queue", ["cartConfig", function(cartConfig) {
+	var self = this;
+	var showID = {};
+	var isPlaying = false;
+
 	this.items = [];
 
-	var self = this;
+	/**
+	 * Insert tracks from the music library into the queue.
+	 */
+	var insertTracks = function() {
+
+	};
+
+	/**
+	 * Insert carts into the queue according to the cart specification.
+	 */
+	var insertCarts = function() {
+
+	};
+
+	/**
+	 * Remove all carts from the queue.
+	 */
+	var removeCarts = function() {
+
+	};
 
 	/**
 	 * Set the current show.
@@ -19,10 +69,10 @@ queueModule.service("queue", [function() {
 	 * @param show
 	 */
 	this.setShow = function(show) {
-		self.items = (self.show.showID === show.showID)
+		self.items = (showID === show.showID)
 			? self.items
 			: show.playlist;
-		self.show = show;
+		showID = show.showID;
 	};
 
 	/**
@@ -41,5 +91,19 @@ queueModule.service("queue", [function() {
 	 */
 	this.remove = function(index) {
 		self.items.splice(index, 1);
+	};
+
+	/**
+	 * Start the queue.
+	 */
+	this.start = function() {
+		isPlaying = true;
+	};
+
+	/**
+	 * Stop the queue at the end of the current item.
+	 */
+	this.stop = function() {
+		isPlaying = false;
 	};
 }]);
