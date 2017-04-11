@@ -1,8 +1,8 @@
 "use strict";
-var _ = require("lodash");
-var debug = require("./js/debug");
+const _ = require("lodash");
+const debug = require("./js/debug");
 
-var mainModule = angular.module("app.main", [
+const mainModule = angular.module("app.main", [
 	"ui.bootstrap",
 	"ui.router",
 	"app.alert"

@@ -5,7 +5,7 @@
  */
 "use strict";
 
-var queueModule = angular.module("app.queue", []);
+const queueModule = angular.module("app.queue", []);
 
 queueModule.constant("cartConfig", [
 	{
@@ -36,30 +36,30 @@ queueModule.constant("cartConfig", [
 ]);
 
 queueModule.service("queue", ["cartConfig", function(cartConfig) {
-	var self = this;
-	var showID = {};
-	var isPlaying = false;
+	const self = this;
+	let showID = {};
+	let isPlaying = false;
 
 	this.items = [];
 
 	/**
 	 * Insert tracks from the music library into the queue.
 	 */
-	var insertTracks = function() {
+	const insertTracks = function() {
 
 	};
 
 	/**
 	 * Insert carts into the queue according to the cart specification.
 	 */
-	var insertCarts = function() {
+	const insertCarts = function() {
 
 	};
 
 	/**
 	 * Remove all carts from the queue.
 	 */
-	var removeCarts = function() {
+	const removeCarts = function() {
 
 	};
 

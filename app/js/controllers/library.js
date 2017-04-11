@@ -1,6 +1,6 @@
 "use strict";
 
-var libraryModule = angular.module("app.library", [
+const libraryModule = angular.module("app.library", [
 	"ui.router",
 	"app.alert",
 	"app.database",
@@ -39,7 +39,7 @@ libraryModule.controller("LibraryAlbumCtrl", ["$scope", "$stateParams", "alert",
 	$scope.album = {};
 	$scope.related_artists = [];
 
-	var getAlbum = function(albumID) {
+	const getAlbum = function(albumID) {
 		db.Library.getAlbum(albumID)
 			.then(function(album) {
 				$scope.album = album;
@@ -57,7 +57,7 @@ libraryModule.controller("LibraryAlbumCtrl", ["$scope", "$stateParams", "alert",
 			return;
 		}
 
-		var item = angular.extend({
+		let item = angular.extend({
 			albumID: album.albumID,
 			album_code: album.album_code,
 			rotation: $scope.rotations[album.rotationID].bin_abbr,

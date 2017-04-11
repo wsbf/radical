@@ -1,6 +1,6 @@
 "use strict";
 
-var loginModule = angular.module("app.login", [
+const loginModule = angular.module("app.login", [
 	"ui.router",
 	"app.database"
 ]);

@@ -1,6 +1,6 @@
 "use strict";
 
-var cartModule = angular.module("app.carts", [
+const cartModule = angular.module("app.carts", [
 	"ui.router",
 	"ui.bootstrap",
 	"app.alert",
@@ -13,10 +13,10 @@ cartModule.controller("CartsCtrl", ["$scope", "$stateParams", "alert", "db", "qu
 	$scope.cart_typeID = $stateParams.cart_typeID;
 	$scope.carts = [];
 
-	var getCarts = function(cart_typeID) {
+	const getCarts = function(cart_typeID) {
 		db.Carts.getCarts(cart_typeID)
 			.then(function(carts) {
-				var now = Date.now();
+				let now = Date.now();
 
 				$scope.carts = carts
 					.filter(function(cart) {
@@ -26,7 +26,7 @@ cartModule.controller("CartsCtrl", ["$scope", "$stateParams", "alert", "db", "qu
 	};
 
 	$scope.enqueueCart = function(cart) {
-		var item = {
+		let item = {
 			album_code: cart.cartID,
 			rotation: $scope.cart_types[cart.cart_typeID].type,
 			track_name: cart.title,

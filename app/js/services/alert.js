@@ -6,18 +6,18 @@
  */
 "use strict";
 
-var alertModule = angular.module("app.alert", []);
+const alertModule = angular.module("app.alert", []);
 
 alertModule.service("alert", ["$interval", function($interval) {
 	this.alerts = [];
 
-	var self = this;
-	var count = 0;
+	const self = this;
+	let count = 0;
 
-	var addAlert = function(type, header, message) {
-		var id = count;
-		var promise = $interval(function() {
-			var index = _.findIndex(self.alerts, { id: id });
+	const addAlert = function(type, header, message) {
+		let id = count;
+		let promise = $interval(function() {
+			let index = _.findIndex(self.alerts, { id: id });
 
 			self.alerts.splice(index, 1);
 		}, 10000, 1);

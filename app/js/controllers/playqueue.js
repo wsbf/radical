@@ -1,7 +1,6 @@
 "use strict";
-var debug = require("./js/debug");
 
-var playqueueModule = angular.module("app.playqueue", [
+const playqueueModule = angular.module("app.playqueue", [
 	"app.alert",
 	"app.database",
 	"app.queue"
@@ -17,12 +16,12 @@ playqueueModule.controller("PlayQueueCtrl", ["$scope", "$interval", "alert", "db
 	$scope.queue = queue;
 	$scope.newTrack = { disc_num: 1 };
 
-	var getCurrentShow = function() {
+	const getCurrentShow = function() {
 		db.Logbook.getCurrentShow().then(function(show) {
 			$scope.show = show;
 
 			if ( $scope.user ) {
-				var scheduleShow = _.find($scope.user.shows || [], {
+				let scheduleShow = _.find($scope.user.shows || [], {
 					scheduleID: show.scheduleID
 				});
 
@@ -40,13 +39,13 @@ playqueueModule.controller("PlayQueueCtrl", ["$scope", "$interval", "alert", "db
 		});
 	};
 
-	var getListenerCount = function() {
+	const getListenerCount = function() {
 		db.Logbook.getListenerCount().then(function(count) {
 			$scope.listenerCount = count;
 		});
 	};
 
-	var getPlaylists = function() {
+	const getPlaylists = function() {
 		db.Playlist.getPlaylists()
 			.then(function(playlists) {
 				$scope.playlists = playlists;
@@ -144,7 +143,7 @@ playqueueModule.controller("PlayQueueCtrl", ["$scope", "$interval", "alert", "db
 	getListenerCount();
 	getPlaylists();
 
-	var listenerCount = $interval(getListenerCount, 5000);
+	let listenerCount = $interval(getListenerCount, 5000);
 
 	$scope.$on("$destroy", function() {
 		$interval.cancel(listenerCount);

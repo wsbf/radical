@@ -5,13 +5,13 @@
  */
 "use strict";
 
-var databaseModule = angular.module("app.database", [
+const databaseModule = angular.module("app.database", [
 	"ngResource"
 ]);
 
 databaseModule.service("db", ["$http", "$q", "$resource", function($http, $q, $resource) {
 
-	var api = {};
+	const api = {};
 
 	api.Defs = $resource("https://wsbf.net/api/defs.php", {}, {
 		get: { method: "GET", isArray: true, cache: true }
@@ -129,7 +129,7 @@ databaseModule.service("db", ["$http", "$q", "$resource", function($http, $q, $r
 		return api.Spotify.SearchArtist
 			.get({ q: artist_name }).$promise
 			.then(function(data) {
-				var artist = data.artists.items[0];
+				let artist = data.artists.items[0];
 
 				return artist
 					? api.Spotify.RelatedArtists.get({ id: artist.id }).$promise

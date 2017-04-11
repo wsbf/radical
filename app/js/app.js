@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module("app", [
+const app = angular.module("app", [
 	"ui.bootstrap",
 	"ui.router",
 	"app.main",
