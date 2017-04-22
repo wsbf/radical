@@ -211,6 +211,22 @@ databaseModule.service("db", ["$http", "$q", "$resource", function($http, $q, $r
 	};
 
 	/**
+	 * Get a list of tracks from past shows.
+	 *
+	 * @param min_length
+	 * @return Promise of tracks array
+	 */
+	this.Logbook.getTracks = function(min_length) {
+		return $http.get("https://wsbf.net/api/logbook/tracks.php", {
+			params: {
+				length: min_length
+			}
+		}).then(function(res) {
+			return res.data;
+		});
+	};
+
+	/**
 	 * Log a track in the current show.
 	 *
 	 * @param track

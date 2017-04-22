@@ -5,7 +5,9 @@
  */
 "use strict";
 
-const queueModule = angular.module("app.queue", []);
+const queueModule = angular.module("app.queue", [
+	"app.database"
+]);
 
 queueModule.constant("cartConfig", [
 	{
@@ -35,32 +37,77 @@ queueModule.constant("cartConfig", [
 	}
 ]);
 
-queueModule.service("queue", ["cartConfig", function(cartConfig) {
+queueModule.service("queue", ["cartConfig", "db", function(cartConfig, db) {
 	const self = this;
-	let showID = {};
+	const PLAYLIST_MIN_LENGTH = 10;
+	let showID = null;
 	let isPlaying = false;
 
 	this.items = [];
 
 	/**
-	 * Insert tracks from the music library into the queue.
+	 * Start the first track in the queue.
 	 */
-	const insertTracks = function() {
+	const enqueue = function() {
+	};
 
+	/**
+	 * Stop and remove the first track in the queue.
+	 */
+	const dequeue = function() {
+	};
+
+	/**
+	 * Set the start time of each item in the queue.
+	 */
+	const setStartTimes = function() {
+	}
+
+	/**
+	 * Insert tracks from the music library into the queue.
+	 *
+	 * @param min_length
+	 */
+	const insertTracks = function(min_length) {
+		db.Logbook.getTracks(min_length)
+			.then(function(tracks) {
+				tracks.forEach(function(track) {
+					self.insert(track);
+				});
+
+				setStartTimes();
+			});
+	};
+
+	/**
+	 * Insert a cart into the queue.
+	 *
+	 * This function inserts carts as near as possible to
+	 * the target window.
+	 *
+	 * @param cart_typeID
+	 * @param minute
+	 * @param max_delta
+	 */
+	const insertCart = function(cart_typeID, minute, max_delta) {
 	};
 
 	/**
 	 * Insert carts into the queue according to the cart specification.
 	 */
 	const insertCarts = function() {
-
+		cartConfig.forEach(function(entry) {
+			insertCart(entry.cart_typeID, entry.minute, entry.max_delta);
+		});
 	};
 
 	/**
 	 * Remove all carts from the queue.
 	 */
 	const removeCarts = function() {
-
+		self.items = self.items.filter(function(item) {
+			return item.album_name;
+		});
 	};
 
 	/**
@@ -98,6 +145,10 @@ queueModule.service("queue", ["cartConfig", function(cartConfig) {
 	 */
 	this.start = function() {
 		isPlaying = true;
+
+		setStartTimes();
+		insertCarts();
+		enqueue();
 	};
 
 	/**
@@ -105,5 +156,36 @@ queueModule.service("queue", ["cartConfig", function(cartConfig) {
 	 */
 	this.stop = function() {
 		isPlaying = false;
+	};
+
+	/**
+	 * Transition to the next track.
+	 */
+	this.transition = function() {
+		dequeue();
+
+		// add tracks to the queue if necessary
+		if ( self.items.length < PLAYLIST_MIN_LENGTH ) {
+			insertTracks(PLAYLIST_MIN_LENGTH);
+			removeCarts();
+			insertCarts();
+		}
+
+		// insert carts if necessary
+		let carts = self.items.filter(function(item) {
+			return !item.album_name;
+		})
+
+		if ( carts.length === 0 ) {
+			insertCarts();
+		}
+
+		// start the next track, or remove all carts
+		if ( isPlaying ) {
+			enqueue();
+		}
+		else {
+			removeCarts();
+		}
 	};
 }]);

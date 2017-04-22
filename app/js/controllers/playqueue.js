@@ -66,6 +66,7 @@ playqueueModule.controller("PlayQueueCtrl", ["$scope", "$interval", "alert", "db
 	};
 
 	$scope.Auto.stopNow = function() {
+		queue.transition();
 		$scope.Auto.state = "stopped";
 	};
 
